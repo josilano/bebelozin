@@ -39,7 +39,7 @@
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
-                   
+                    
                     <h:form id="mostraConvenio">
                         <h:panelGrid columns="2">
                             <p:outputLabel value="Nome" for="campo-nome" />
@@ -62,9 +62,6 @@
                                     itemLabel="#{convenio.tipoDeConvenio}" />
                             </h:selectOneRadio>
  
-    
-
-   
                             <p:selectOneRadio value="#{usuarioBean.usuario.convenio}" rendered="#{usuarioBean.mostraConvenio}">
                                 <f:selectItem itemValue="hapvida" itemLabel="Hapvida" />
                                 <f:selectItem itemValue="unimed" itemLabel="Unimed" />
@@ -75,7 +72,14 @@
                             <p:commandButton value="cadastrar" action="#" />
                         </h:panelGrid>
                     </h:form>
-                    
+                            <h:panelGrid>
+                                <p:selectOneRadio value="" rendered="">
+                                    <f:selectItems value="#{sessaoBean.listarSesoes()}"
+                                        var="sessoes"
+                                        itemValue="#{sessao.sessao_tipo}"
+                                        itemLabel="#{sessao.sessao_tipo}" />
+                                </p:selectOneRadio>
+                            </h:panelGrid>
                     <h:form>
                         <h:panelGrid columns="2">
                             <p:outputLabel value="Cadastrar Convênio" for="campo-convenio" />
