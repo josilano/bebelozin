@@ -9,70 +9,40 @@
         <h:head>
             <f:facet name="first">
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
-                <title>PrimeFaces</title>
+                <title><ui:insert name="title">Texto do título</ui:insert></title>
             </f:facet>
+            
         </h:head>
 
         <h:body>
-
+            
             <p:layout fullPage="true">
 
-                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
-                    Header
+<!--                <p:layoutUnit position="north" size="180" resizable="true" closable="false" collapsible="true" >
+                    
+                    <ui:include src="../partials/usuarioCabecalho.xhtml" />
+                </p:layoutUnit>-->
+
+                <p:layoutUnit position="south" size="50" closable="true" collapsible="true">
+                    &copy;All Rights Reserved DuPi
                 </p:layoutUnit>
 
-                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
-                    Footer
-                </p:layoutUnit>
-
-                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                    <p:menu>
-                        <p:submenu label="Resources">
-                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
-
-                        </p:submenu>
-
-                    </p:menu>
+                <p:layoutUnit position="west" size="220" header="Bebelozin" collapsible="true" 
+                              style="height: 40%">
+                    <ui:include src="../partials/menu.xhtml" />
                 </p:layoutUnit>
 
                 <p:layoutUnit position="center">
+                    <ui:insert name="center">texto do centro</ui:insert>
                     <h:form>
-                        <h:panelGrid columns="2">
-                            <p:outputLabel value="Nome" for="campo-nome" />
-                            <p:inputText value="" id="campo-nome" required="" autocomplete="" placeholder="Nome"/>
-                            
-                            <p:outputLabel value="Número de Contato" for="campo-contato" />
-                            <p:inputMask value="" id="campo-contato" required="" mask="(999) 9999-9999"/>
-                            
-                            <p:selectOneRadio value="#{usuarioBean.valorConvenio}" >
-                                <f:selectItem itemValue="particular" itemLabel="Particular" />
-                                <f:selectItem itemValue="convenio" itemLabel="Convênio" />
-                                <p:ajax listener="#{usuarioBean.validaConvenio()}" update="mostraConvenio" />
-                            </p:selectOneRadio>
-                            
-                            <p:selectOneRadio value="#{usuarioBean.livro.convenio}" id="mostraConvenio" rendered="#{usuarioBean.mostraConvenio}">
-                                <f:selectItem itemValue="hapvida" itemLabel="Hapvida" />
-                                <f:selectItem itemValue="unimed" itemLabel="Unimed" />
-                            </p:selectOneRadio>
-                            <!--<h:outputText value="#{usuarioBean.mostraConvenio}" id="mostraConvenio" />-->
-<!--                            <h:selectOneMenu value="">
-                                <f:selectItems
-                                    value=""
-                                    var=""
-                                    itemValue=""
-                                    itemLabel="" />
-                            </h:selectOneMenu>-->
-
-                            <p:commandButton value="cadastrar" action="#" />
-                        </h:panelGrid>
-                    </h:form>
-                        <p:outputLabel value="Cadastrar Convênio" for="campo-convenio" />
-                        <p:inputText value="" id="campo-convenio" />
-                    <h:form>
-                        
+                    <p:stack icon="/imagens/stack.png" expanded="true">
+                        <p:menuitem value="Home" icon="/imagens/home.png" outcome="/paginaInicial.xhtml"/>
+                        <p:menuitem value="#{usuarioBean.usuario.nomeUsuario}" icon="/imagens/login.png" 
+                                    outcome="/usuarioLogado.xhtml"/>
+                        <p:menuitem value="Sair" icon="/imagens/warning.png" action="#{usuarioBean.logout()}"/>
+                        <p:menuitem value="Contato" icon="/imagens/email.png" outcome="/contato.xhtml"/>
+                        <p:menuitem value="Configurações" icon="/imagens/terminal.png" />
+                    </p:stack>
                     </h:form>
                 </p:layoutUnit>
 

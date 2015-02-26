@@ -8,6 +8,7 @@ package edu.br.bebelozin.DAO;
 
 import edu.br.bebelozin.Bean.Usuario;
 import edu.br.bebelozin.Factory.ConnectionFactory;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,9 +41,9 @@ public class UsuarioDAO {
             + "VALUES (?, ?, ?)";
                     
                 try (PreparedStatement ps = connection.prepareStatement(sql)){
-                    ps.setString(1, livro.getTitulo());
-                    ps.setString(2, livro.getAno());
-                    ps.setString(3, livro.getGenero());
+//                    ps.setString(1, livro.getTitulo());
+//                    ps.setString(2, livro.getAno());
+//                    ps.setString(3, livro.getGenero());
                                            
                         int retornos = ps.executeUpdate();
                             if(retornos == 1){
@@ -68,14 +69,14 @@ public class UsuarioDAO {
         String sqls = "SELECT * FROM livro WHERE liv_titulo = ?";
          
         try (PreparedStatement pst = connection.prepareStatement(sqls)){
-            pst.setString(1, livro.getTitulo());
+            //pst.setString(1, livro.getTitulo());
             
             ResultSet result = pst.executeQuery();
                 if(result.next()){
-                    livro.setCodigo(result.getInt("liv_id"));
-                    livro.setTitulo(livro.getTitulo());
-                    livro.setGenero(result.getString("liv_genero"));
-                    livro.setAno(result.getString("liv_ano"));
+//                    livro.setCodigo(result.getInt("liv_id"));
+//                    livro.setTitulo(livro.getTitulo());
+//                    livro.setGenero(result.getString("liv_genero"));
+//                    livro.setAno(result.getString("liv_ano"));
                     
                     return livro;
                 }
@@ -104,13 +105,13 @@ public class UsuarioDAO {
             ResultSet result = pst.executeQuery();
                 while(result.next()){
                     Usuario livronew = new Usuario();
-                    livronew.setCodigo(result.getInt("liv_id"));
-                    livronew.setTitulo(result.getString("liv_titulo"));
-                    livronew.setGenero(result.getString("liv_genero"));
-                    livronew.setAno(result.getString("liv_ano"));
-                    livronew.setComentarios(result.getString("liv_coment"));
-                    livronew.setEditora(result.getString("liv_editora"));
-                    livronew.setEdicao(result.getString("liv_edicao"));
+//                    livronew.setCodigo(result.getInt("liv_id"));
+//                    livronew.setTitulo(result.getString("liv_titulo"));
+//                    livronew.setGenero(result.getString("liv_genero"));
+//                    livronew.setAno(result.getString("liv_ano"));
+//                    livronew.setComentarios(result.getString("liv_coment"));
+//                    livronew.setEditora(result.getString("liv_editora"));
+//                    livronew.setEdicao(result.getString("liv_edicao"));
                     lista.add(livronew);
                 }
                 return lista;
@@ -135,10 +136,10 @@ public class UsuarioDAO {
                 + "WHERE liv_id = ?";
                     
                 try (PreparedStatement ps = connection.prepareStatement(sql)){
-                    ps.setString(1, livro.getTitulo());
-                    ps.setString(2, livro.getAno());
-                    ps.setString(3, livro.getGenero());
-                    ps.setInt(4, livro.getCodigo());
+//                    ps.setString(1, livro.getTitulo());
+//                    ps.setString(2, livro.getAno());
+//                    ps.setString(3, livro.getGenero());
+//                    ps.setInt(4, livro.getCodigo());
 
                         int retornos = ps.executeUpdate();
                             if(retornos == 1){
@@ -164,7 +165,7 @@ public class UsuarioDAO {
         String sql = "DELETE FROM livro WHERE liv_titulo = ?";
                     
             try (PreparedStatement ps = connection.prepareStatement(sql)){
-                ps.setString(1, livro.getTitulo());
+                //ps.setString(1, livro.getTitulo());
                 
                     int retorno = ps.executeUpdate();
                         if(retorno == 1){
@@ -184,5 +185,35 @@ public class UsuarioDAO {
                 }
        
         return false;
+    }
+    
+    public Usuario getUsuario(Usuario usuario){
+        String sql = "SELECT * FROM usuario WHERE usu_nome = ? AND usu_senha = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, usuario.getNomeUsuario());
+            ps.setString(2, usuario.getSenha());
+            ResultSet result = ps.executeQuery();
+                if(result.next()){
+                    Usuario usuarioLogado = new Usuario();
+                    usuarioLogado.setNomeUsuario(usuario.getNomeUsuario());
+                    usuarioLogado.setSenha(usuario.getSenha());
+                    usuarioLogado.setIdUsuario(result.getInt("usu_id"));
+                    usuarioLogado.setTel(result.getString("usu_tel"));
+                    
+                    return usuarioLogado;  
+                }
+        }catch(SQLException e){
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
+        }finally{
+            if(connection != null){
+                try {
+                    connection.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("Desconectado!");
+            }
+        }
+        return null;
     }
 }

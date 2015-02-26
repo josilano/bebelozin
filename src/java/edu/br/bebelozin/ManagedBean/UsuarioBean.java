@@ -8,13 +8,16 @@ package edu.br.bebelozin.ManagedBean;
 import edu.br.bebelozin.Bean.Convenio;
 import edu.br.bebelozin.Bean.Usuario;
 import edu.br.bebelozin.DAO.UsuarioDAO;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -22,6 +25,7 @@ import javax.faces.context.FacesContext;
  * @author Lano_2
  */
 @ManagedBean
+@SessionScoped
 public class UsuarioBean {
     
     private Usuario usuario;
@@ -104,6 +108,45 @@ public class UsuarioBean {
         this.usuario = new Usuario();  
     }
     
+    public void save() {
+        addMessage("Success", "Data saved");
+    }
+     
+    public void update() {
+        addMessage("Success", "Data updated");
+    }
+     
+    public void delete() {
+        addMessage("Success", "Data deleted");
+    }
+     
+    public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+    
+    public String logout(){
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        session.invalidate();
+        return "index";
+    }
+    
+    public String logar(){
+        try {
+            this.usuariodao = new UsuarioDAO();
+            this.usuario = this.usuariodao.getUsuario(this.usuario);
+            if(this.usuario != null){
+                return "paginaInicial";
+            }else{
+                FacesMessage mensagem = new FacesMessage("Usuario/Senha Inválido!"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "index";
+    }
 //    public void cadastrarLivro(){
 //        
 //        try {

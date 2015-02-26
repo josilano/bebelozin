@@ -74,23 +74,6 @@
                             <p:commandButton value="Cadastrar Convênio" action="#{convenioBean.cadastrarConvenio()}" />
                         </h:panelGrid>
                     </h:form>
-                    <h:form>
-                        <h:panelGrid columns="2">
-                            <p:outputLabel value="Id usuario" for="campo-idusu" />
-                            <p:inputText value="#{semanalBean.semanal.usuario_id}" id="campo-idusu" />
-                            <p:outputLabel value="Id sessao" for="campo-idsessao" />
-                            <p:inputText value="#{semanalBean.semanal.id_sessao}" id="campo-idsessao" />
-                            
-                             
-                            <p:outputLabel value="Pagamento Efetuado:" for="campo-pagamento" />
-                            <p:selectBooleanButton value="#{semanalBean.semanal.pagamento}" id="campo-pagamento" onLabel="SIM" offLabel="NÂO" />
-                            <!--<p:inputText value="{semanalBean.semanal.pagamento}" id="campo-pagamento" />-->
-                            <p:outputLabel value="Data" for="campo-data" />
-                            <p:calendar value="#{semanalBean.semanal.data}" id="campo-data" mode="popup" />
-                            
-                            <p:commandButton value="Cadastrar" action="#{semanalBean.cadastro()}" />
-                        </h:panelGrid>
-                    </h:form>
                 </p:layoutUnit>
 
             </p:layout>

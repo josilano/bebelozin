@@ -7,6 +7,7 @@ package edu.br.bebelozin.ManagedBean;
 
 import edu.br.bebelozin.Bean.Editora;
 import edu.br.bebelozin.DAO.EditoraDAO;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -21,7 +22,7 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 
-public class EditoraBean {
+public class EditoraBean implements Serializable{
     
    private Editora editora;
    private EditoraDAO editoradao;
