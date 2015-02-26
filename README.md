@@ -6,5 +6,5 @@
  * NetBeans (recomendado versão 8.x ou mais);
  * Banco de Dados postgreSQL;
  * Arquivo .jar do postgres;
-+
+ * PrimeFaces;
 +----
