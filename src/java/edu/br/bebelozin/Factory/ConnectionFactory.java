@@ -6,7 +6,6 @@
 
 package edu.br.bebelozin.Factory;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,10 +14,10 @@ import java.sql.SQLException;
  *
  * @author 1946810
  */
-public class ConnectionFactory implements Serializable{
+public class ConnectionFactory {
  
-    private String driver = "org.postgresql.Driver";
-    private String url = "jdbc:postgresql://localhost/bebelozin", usuario = "postgres", senha = "";
+    private final String driver = "org.postgresql.Driver";
+    private final String url = "jdbc:postgresql://localhost/bebelozin", usuario = "postgres", senha = "lanodupi";
     
     public Connection getConnection(){
         try{

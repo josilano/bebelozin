@@ -8,6 +8,7 @@ package edu.br.bebelozin.ManagedBean;
 import edu.br.bebelozin.Bean.Convenio;
 import edu.br.bebelozin.Bean.Pacientes;
 import edu.br.bebelozin.Bean.Sessao;
+import edu.br.bebelozin.DAO.ConsultaDiariaDAO;
 import edu.br.bebelozin.DAO.ConvenioDAO;
 import edu.br.bebelozin.DAO.PacientesDAO;
 import edu.br.bebelozin.DAO.SessaoDAO;
@@ -30,7 +31,7 @@ import javax.faces.context.FacesContext;
 
 public class ConsultaDiariaBean {
     
-    private Sessao sesao;
+    private Sessao sessao;
     private SessaoDAO sessaodao;
     private List<Sessao> listaSessao;
     
@@ -38,18 +39,22 @@ public class ConsultaDiariaBean {
     private PacientesDAO pacientedao;
     private List<Pacientes> listaConsultaDiaria = new ArrayList<>();
     
+    private ConsultaDiariaDAO consultaDiariadao;
+    
+    private String particular = "PARTICULAR";
+    
     public ConsultaDiariaBean(){
-        this.sesao = new Sessao();
+        this.sessao = new Sessao();
         this.paciente = new Pacientes();
     }
 
     //gets e sets
-    public Sessao getSesao() {
-        return sesao;
+    public Sessao getSessao() {
+        return sessao;
     }
 
-    public void setSesao(Sessao sesao) {
-        this.sesao = sesao;
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
     }
 
     public SessaoDAO getSessaodao() {
@@ -91,10 +96,26 @@ public class ConsultaDiariaBean {
     public void setListaConsultaDiaria(List<Pacientes> listaConsultaDiaria) {
         this.listaConsultaDiaria = listaConsultaDiaria;
     }
+
+    public ConsultaDiariaDAO getConsultaDiadiadao() {
+        return consultaDiariadao;
+    }
+
+    public void setConsultaDiadiadao(ConsultaDiariaDAO consultaDiadiadao) {
+        this.consultaDiariadao = consultaDiadiadao;
+    }
+
+    public String getParticular() {
+        return particular;
+    }
+
+    public void setParticular(String particular) {
+        this.particular = particular;
+    }
     
     
     public void limpar(){
-        this.sesao = new Sessao();
+        this.sessao = new Sessao();
     }
     
     //popula a lista das sessões com todas as cadastradas
@@ -117,6 +138,33 @@ public class ConsultaDiariaBean {
     
     //add um paciente a lista de consultas diária
     public void addConsultaDiaria(){
+        System.out.println("entrou no método addconsultadiaria do mb");
+        try {
+            this.consultaDiariadao = new ConsultaDiariaDAO();
+            System.out.println(this.paciente.getNomePaciente());
+            boolean montarConsulta = this.consultaDiariadao.montandoConsultaDoPaciente(this.paciente, this.sessao.getSessaolista());
+            //boolean montarConsulta2 = this.sessaodao.montandoConsultaDaSessao(this.sesao);
+                this.listaConsultaDiaria.add(this.paciente);
+                System.out.println(this.listaConsultaDiaria.get(0).getNomePaciente());
+            if(montarConsulta){
+                
+                
+                
+                
+                this.paciente.setMostrapesquisa(true);
+                FacesMessage mensagem = new FacesMessage("Usuario encontrado"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+            else{
+                FacesMessage mensagem = new FacesMessage("Usuario não encontrado"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+   public void montaConsultaDiaria(){
         try {
             this.pacientedao = new PacientesDAO();
             System.out.println(this.paciente.getNomePaciente());
@@ -139,8 +187,12 @@ public class ConsultaDiariaBean {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
+    } 
+   
+   public void selecaoRapida(){
+       this.listaConsultaDiaria.add(this.paciente);
+       listaCompletaSessao();
+   }
 //  public void pedidoListarPacientes(){
 //        try {
 //            this.pacientedao = new PacientesDAO();

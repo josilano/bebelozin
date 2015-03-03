@@ -5,7 +5,7 @@
  */
 package edu.br.bebelozin.Bean;
 
-import java.io.Serializable;
+import java.util.Date;
 
 /**
  *
@@ -19,6 +19,8 @@ public class Pacientes {
     private String doencaPaciente;
     private String convenioPaciente;
     private boolean mostrapesquisa;
+    private Date diaConsulta;
+    private boolean pagamento;
 
     public int getIdPaciente() {
         return idPaciente;
@@ -66,6 +68,22 @@ public class Pacientes {
 
     public void setMostrapesquisa(boolean mostrapesquisa) {
         this.mostrapesquisa = mostrapesquisa;
+    }
+
+    public Date getDiaConsulta() {
+        return diaConsulta;
+    }
+
+    public void setDiaConsulta(Date diaConsulta) {
+        this.diaConsulta = diaConsulta;
+    }
+
+    public boolean isPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(boolean pagamento) {
+        this.pagamento = pagamento;
     }
     
 }

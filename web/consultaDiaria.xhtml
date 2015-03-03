@@ -7,12 +7,10 @@
           
     <ui:define name="title">Consulta Diária</ui:define>
     <ui:define name="center">
-        <p:panel style="background-color: #333333">
-        <h:form id="message">
-            <p:growl id="message" showDetail="true" />
+        <!--<p:panel style="background-color: #333333">-->
+        <h:form>
+            <p:growl id="message2" showDetail="true" />
             
-            
-        
             <p:fieldset>
                 <p:autoComplete value="#{consultaDiariaBean.paciente}"
                                 completeMethod="#{pacientesBean.completaPesquisaPaciente}"
@@ -20,8 +18,8 @@
                                 converter="pacienteConverter" forceSelection="true" placeholder="Pesquisar"
                                 emptyMessage="Não Encontrado" />
 
-                <p:commandLink title="Selecionar" action="#{consultaDiariaBean.addConsultaDiaria()}" 
-                                actionListener="#{pacientesBean.clicarBotaoPesquisa()}" update="message">
+                <p:commandLink title="Selecionar" action="#{consultaDiariaBean.selecaoRapida()}" 
+                                actionListener="#{pacientesBean.clicarBotaoPesquisa()}" update=":message2">
                     <p:graphicImage value="/imagens/zoom.svg" style="width: 40px; height: 40px"/>
                 </p:commandLink>
 
@@ -32,38 +30,76 @@
                     <p:graphicImage value="/imagens/ajaxloadingbar.gif" />
                 </p:dialog>
             </p:fieldset>          
+        </h:form>
+        <!--</p:panel>-->
+        
+        <p:panel header="Paciente Selecionado" footer="Exclua ou Altere dados"
+                 id="message4" toggleable="true" toggleSpeed="500">
+        <h:form id="message2">
+            <p:growl id="message2" showDetail="true" />
+            <p:fieldset>
+            <p:panelGrid columns="5">
+                <p:outputLabel value="Paciente" />
+                <p:outputLabel value="Diagnóstico" />
+                <p:outputLabel value="Sessões para Diagnóstico" />
+                <p:outputLabel value="Pagamento" />
+                <p:outputLabel value="Salvar" />
+                
+                <p:outputLabel value="#{consultaDiariaBean.paciente.nomePaciente}" />
+                
+                <p:outputLabel value="#{consultaDiariaBean.paciente.doencaPaciente}" />
+                
+                <h:selectManyCheckbox value="#{consultaDiariaBean.sessao.sessaolista}" 
+                                      layout="pageDirectiongrid">
+                    <f:selectItems value="#{consultaDiariaBean.listaSessao}"
+                                   var="sessao"
+                                   itemValue="#{sessao.tipoDeSessao}"
+                                   itemLabel="#{sessao.tipoDeSessao}" />
+                </h:selectManyCheckbox>
+                
+                <p:selectBooleanButton offLabel="Não" onLabel="Sim" 
+                                       disabled="#{paciente.convenioPaciente != consultaDiariaBean.particular}"
+                                       value="#{consultaDiariaBean.paciente.pagamento}"/>
+                
+                <p:commandLink action="#{consultaDiariaBean.addConsultaDiaria()}" update="message2" >
+                    <p:graphicImage value="/imagens/new.png" style="width: 40px; height: 40px"/>
+                </p:commandLink>
+                
+                <h:inputHidden value="#{consultaDiariaBean.paciente.idPaciente}" />
+                <h:inputHidden value="#{consultaDiariaBean.paciente.convenioPaciente}" />
+                <h:inputHidden value="#{consultaDiariaBean.paciente.doencaPaciente}" />
+                
+            </p:panelGrid>
+            </p:fieldset>
             
-            <h:dataTable var="paciente" value="#{consultaDiariaBean.listaConsultaDiaria}" 
-                         id="message2" border="1">
-                <!--<p:subTable var="sessao" value="#{consultaDiariaBean.listaSessao}" id="message2">-->
-                    <h:column>
-                        <f:facet name="header"><p:outputLabel value="Paciente" /></f:facet>
-                        <p:outputLabel value="#{paciente.nomePaciente}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header"><p:outputLabel value="Diagnóstico" /></f:facet>
-                        <p:outputLabel value="#{paciente.doencaPaciente}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header"><p:outputLabel value="Sessões para Diagnóstico" /></f:facet>
-                        <h:selectManyCheckbox value="#{sessaoBean.sesao.tipoDeSessao}" >
-                            <f:selectItems value="#{consultaDiariaBean.listaSessao}"
-                                           var="sessao"
-                                           itemValue="#{sessao.tipoDeSessao}"
-                                           itemLabel="#{sessao.tipoDeSessao}" />
-                        </h:selectManyCheckbox>
-                    </h:column>
-                <h:column>
-                    <f:facet name="header"><p:outputLabel value="Salvar" /></f:facet>
-                    <p:commandLink action="#" >
-                        <p:graphicImage value="/imagens/new.png" style="width: 40px; height: 40px"/>
-                    </p:commandLink>
-                </h:column>
-                <!--</p:subTable>-->
-            </h:dataTable>
             
         </h:form>
+           
         </p:panel>
+         <p:dataTable var="consulta" value="#">
+                <f:facet name="header"><p:outputLabel value="Consulta Diária" /></f:facet>
+                
+                <p:column>
+                    <f:facet name="header" ><p:outputLabel value="Paciente" /></f:facet>
+                    <p:outputLabel value="#" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header"><p:outputLabel value="Diagnóstico" /></f:facet>
+                    <p:outputLabel value="#"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header"><p:outputLabel value="Convênio" /></f:facet>
+                    <p:outputLabel value="#"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header"><p:outputLabel value="Pagamento" /></f:facet>
+                    <p:outputLabel value="#"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header"><p:outputLabel value="Sessões" /></f:facet>
+                    <p:outputLabel value="#"/>
+                </p:column>
+            </p:dataTable>
     </ui:define>
     
 </ui:composition>
