@@ -136,11 +136,17 @@ public class SessaoBean {
     }
 
     public void alteraSessao(){
+        System.out.println("entrou no método alterar do mb");
         try {
+            System.out.println("sessao a ser alterado " + this.sesao.getTipoDeSessao());
+            System.out.println("id a ser alterado " + this.sesao.getIdSessao());
             this.sessaodao = new SessaoDAO();
             boolean alteraSessao = this.sessaodao.atualizaSessao(this.sesao);
+            System.out.println(alteraSessao);
             if(alteraSessao){
+                System.out.println("estado do mostra pesquisa antes: " + this.sesao.isMostraPesquisa());
                 this.sesao.setMostraPesquisa(false);
+                  System.out.println("estado do mostra pesquisa depois: " + this.sesao.isMostraPesquisa());
                 FacesMessage mensagem = new FacesMessage("Sessão alterada"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }else{
@@ -148,7 +154,7 @@ public class SessaoBean {
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SessaoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.sesao = new Sessao();
     }

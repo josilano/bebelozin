@@ -10,7 +10,6 @@ import edu.br.bebelozin.Bean.Convenio;
 import edu.br.bebelozin.Bean.Pacientes;
 import edu.br.bebelozin.Bean.Usuario;
 import edu.br.bebelozin.Factory.ConnectionFactory;
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -166,8 +165,12 @@ public class ConvenioDAO {
                     ps.setInt(2, convenio.getIdConvenio());
 
                         int retornos = ps.executeUpdate();
+                         System.out.println(retornos);
                             if(retornos == 1){
+                                System.out.println("atualizado com o int valor " + retornos);
                                 return true;
+                            }else{
+                                 System.out.println("ERRO ao atualizar int valor " + retornos);
                             }
                 } catch (SQLException ex) {
                         Logger.getLogger(ConvenioDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12/02/2015, 18:44:28
+    Author     : Lano_2
+*/
+
+.menustyle{
+    width: 180px !important;
+}
+
+.wijmo-wijmenu{
+    width: 20% !important;
+    size: 100px !important;
+}
+
+.ui-layout-north {
+        z-index:20 !important;
+        overflow:visible !important;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+        overflow:visible !important;
+}
+
+.zoomin{
+    background-image: url('../imagens/zoomin.png') !important;
+}
+
+.trash{
+    background-image: url('../imagens/trash.png') !important;
+}

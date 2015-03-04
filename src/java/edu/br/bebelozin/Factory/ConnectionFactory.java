@@ -11,14 +11,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author 1946810
- */
-public class ConnectionFactory implements Serializable{
+public class ConnectionFactory {
  
     private String driver = "org.postgresql.Driver";
-    private String url = "jdbc:postgresql://localhost/bebelozin", usuario = "postgres", senha = "";
+    private String url = "jdbc:postgresql://localhost/bebelozin", usuario = "postgres", senha = "94415944";
     
     public Connection getConnection(){
         try{
