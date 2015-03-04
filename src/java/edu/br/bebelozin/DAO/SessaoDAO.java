@@ -156,16 +156,20 @@ public class SessaoDAO {
         return null;
     }
     
-    public boolean atualizaSessao(Sessao sesao){
+    public boolean atualizaSessao(Sessao sessao){
         String sql = "UPDATE sessoes SET sess_tipo = ? WHERE sess_id = ?";
                     
                 try (PreparedStatement ps = connection.prepareStatement(sql)){
                     ps.setString(1, sessao.getTipoDeSessao());
                     ps.setInt(2, sessao.getIdSessao());
-
+                        
                         int retornos = ps.executeUpdate();
+                       
                             if(retornos == 1){
+                                System.out.println("atualizado com o int valor " + retornos );
                                 return true;
+                            }else{
+                                System.out.println("Erro ao atualizar int valor " + retornos);
                             }
                 } catch (SQLException ex) {
                         Logger.getLogger(SessaoDAO.class.getName()).log(Level.SEVERE, null, ex);

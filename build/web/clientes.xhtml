@@ -1,0 +1,82 @@
+<ui:composition template="/WEB-INF/templates/templateBasico.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+          
+    <ui:define name="center">
+        <h:form id="mostraConvenio">
+            <p:growl id="message" showDetail="true" />
+            
+            <p:fieldset legend="Opções" toggleable="true" toggleSpeed="500">
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Nome" for="campo-nome" />
+                    <p:inputText value="#{usuarioBean.usuario.nomeUsuario}" id="campo-nome" required="true"/>
+
+                    <p:outputLabel value="Telefone" for="campo-tel" />
+                    <p:inputMask value="#{usuarioBean.usuario.tel}" id="campo-tel" required="true" mask="(999) 9999-9999"/>
+
+                    <p:outputLabel value="Diagnóstico" for="campo-permissao" />
+                    <p:inputText value="#{usuarioBean.usuario.permissao}" id="campo-permissao" required="true" />
+
+                    <p:selectOneRadio value="#{convenioBean.valorConvenio}" >
+                                    <f:selectItem itemValue="particular" itemLabel="Particular" />
+                                    <f:selectItem itemValue="convenio" itemLabel="Convênio" />
+                                    <p:ajax update="mostraConvenio" listener="#{convenioBean.validaConvenio()}" /> 
+                    </p:selectOneRadio>
+
+                    <p:selectOneRadio value="#{pacientesBean.paciente.convenioPaciente}" >
+                        <f:selectItems
+                            value="#{convenioBean.listaConvenio}"
+                            var="convenio"
+                            itemValue="#{convenio.idConvenio}"
+                            itemLabel="#{convenio.tipoDeConvenio}" />
+                    </p:selectOneRadio>
+            
+                </h:panelGrid>
+                
+                <p:commandButton value="Cadastrar" action="#{pacientesBean.cadastrarPaciente()}" 
+                                 actionListener="#{pacientesBean.clicarBotaoCadastro()}" update="message">
+                    <p:confirm header="Confirmação" message="Quer buceta?" icon="ui-icon-alert" />
+                </p:commandButton>
+                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                
+                <p:commandButton value="Excluir" action="#{pacientesBean.cadastrarPaciente()}" />
+                <p:commandButton value="Editar" action="#{pacientesBean.cadastrarPaciente()}" />
+                <p:commandButton value="Pesquisar" action="#{pacientesBean.cadastrarPaciente()}" />
+                
+            </p:fieldset>
+        </h:form>
+        
+        <h:dataTable value="#{pacientesBean.listaPaciente}" var="paciente"
+                rendered="#{not empty pacientesBean.listaPaciente}">
+            <f:facet name="header">Pacientes Cadastrados</f:facet>
+            
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{paciente.nomePaciente}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Telefone</f:facet>
+                #{paciente.telefonePaciente}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Diagnóstico</f:facet>
+                #{paciente.doencaPaciente}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Convênio</f:facet>
+                #{paciente.convenioPaciente}
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+    
+</ui:composition>

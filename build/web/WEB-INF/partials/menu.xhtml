@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+          
+    <h:form>
+    <p:menu class="menustyle">
+        <p:submenu label="CRM">
+            <p:menuitem value="Pacientes" outcome="pacientes" icon="ui-icon-person" />
+            <p:menuitem value="Convênios" outcome="convenios" icon="ui-icon-document" />
+            <p:menuitem value="Sessões" outcome="sessoes" icon="ui-icon-contact" />
+        </p:submenu>
+    </p:menu>
+    
+    <p:menu>
+        <p:submenu label="Evento">
+            <p:menuitem value="Consulta Diária" outcome="consultaDiaria" />
+        </p:submenu>
+    </p:menu>
+        
+    <p:menu>
+        <p:submenu label="Financeiro">
+            <p:menuitem value="Contas a Pagar" outcome="passivo" />
+            <p:menuitem value="Contas a Receber" outcome="ativo" />
+            <p:menuitem value="Saldo" outcome="saldo" />
+        </p:submenu>
+    </p:menu>
+    
+    <p:menu>
+        <p:submenu label="ADMIN">
+            <p:menuitem value="Clientes" outcome="usuario" />
+        </p:submenu>
+    </p:menu>
+    </h:form>
+</ui:composition>
