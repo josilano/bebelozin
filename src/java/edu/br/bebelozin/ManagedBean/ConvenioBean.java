@@ -18,8 +18,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -148,21 +146,20 @@ public class ConvenioBean {
             this.convenio = this.conveniodao.selecionaConvenio(this.convenio);
             if(convenio != null){
                 this.convenio.setMostraPesquisa(true);
-                FacesMessage mensagem = new FacesMessage("Convenio encontrado"); 
+                FacesMessage mensagem = new FacesMessage("Usuario encontrado"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }
             else{
-                FacesMessage mensagem = new FacesMessage("Convenio não encontrado"); 
+                FacesMessage mensagem = new FacesMessage("Usuario não encontrado"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ConvenioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("id: " + convenio.getIdConvenio());
     }
     
     public void clicarBotaoPesquisa() {
-        addMessage("Sucesso!", "Convenio encontrado.");
+        addMessage("Sucesso!", "Paciente encontrado.");
     }
 //    public void cadastrarLivro(){
 //        
@@ -183,17 +180,12 @@ public class ConvenioBean {
 //    }
 //    
     public void alteraConvenio(){
-        System.out.println("entrou no método alterar do mb");
+        
         try {
-            System.out.println("convenio a ser alterado " + this.convenio.getTipoDeConvenio());
-            System.out.println("id a ser alterado " + this.convenio.getIdConvenio());
             this.conveniodao = new ConvenioDAO();
             boolean alteraConvenio = this.conveniodao.atualizaConvenio(this.convenio);
-            
             if(alteraConvenio){
-                 System.out.println("estado do mostra pesquisa antes: " + this.convenio.isMostraPesquisa());
                 this.convenio.setMostraPesquisa(false);
-                 System.out.println("estado do mostra pesquisa depois: " + this.convenio.isMostraPesquisa());
                 FacesMessage mensagem = new FacesMessage("Convênio alterado"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }else{
@@ -234,7 +226,7 @@ public class ConvenioBean {
             boolean excluirConvenio = this.conveniodao.excluiConvenio(this.convenio);
             if(excluirConvenio){
                 this.convenio.setMostraPesquisa(false);
-                FacesMessage mensagem = new FacesMessage("Convenio excluído"); 
+                FacesMessage mensagem = new FacesMessage("Usuario excluído"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }else{
                 FacesMessage mensagem = new FacesMessage("Falha na exclusão"); 
