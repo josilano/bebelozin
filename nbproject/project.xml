@@ -11,6 +11,10 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+                    <file>${libs.primefaces.classpath}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
                     <file>${file.reference.postgresql-9.3-1102.jdbc41.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -18,17 +22,13 @@
                     <file>${file.reference.dot-luv-1.0.10.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-                <library dirs="200">
-                    <file>${libs.primefaces.classpath}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
-                <root id="src.dir"/>
+                <root id="src.dir" name="Pacotes de Códigos-fonte"/>
             </source-roots>
             <test-roots>
-                <root id="test.src.dir"/>
+                <root id="test.src.dir" name="Pacotes de Teste"/>
             </test-roots>
         </data>
     </configuration>

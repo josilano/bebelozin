@@ -171,9 +171,9 @@ public class PacientesBean {
             this.pacientedao = new PacientesDAO();
             boolean alteraPaciente = this.pacientedao.atualizaPaciente(this.paciente);
             if(alteraPaciente){
-                System.out.println("estado do mostra pesquisa antes: " + this.paciente.isMostrapesquisa());
+                System.out.println("estado do mostra pesqusia antes: " + this.paciente.isMostrapesquisa());
                 this.paciente.setMostrapesquisa(false);
-                System.out.println("estado do mostra pesquisa depois: " + this.paciente.isMostrapesquisa());
+                System.out.println("estado do mostra pesqusia depois: " + this.paciente.isMostrapesquisa());
                 FacesMessage mensagem = new FacesMessage("Usuario alterado"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }else{
