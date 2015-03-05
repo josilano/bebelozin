@@ -8,6 +8,7 @@ package edu.br.bebelozin.ManagedBean;
 import edu.br.bebelozin.Bean.Convenio;
 import edu.br.bebelozin.Bean.Pacientes;
 import edu.br.bebelozin.Bean.Sessao;
+import edu.br.bebelozin.DAO.ConsultaDiariaDAO;
 import edu.br.bebelozin.DAO.ConvenioDAO;
 import edu.br.bebelozin.DAO.PacientesDAO;
 import edu.br.bebelozin.DAO.SessaoDAO;
@@ -29,6 +30,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 
 public class ConsultaDiariaBean {
+    private ConsultaDiariaDAO consultaDiariaDAO;
     
     private Sessao sesao;
     private SessaoDAO sessaodao;
@@ -139,6 +141,23 @@ public class ConsultaDiariaBean {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    public void cadastroConsultaDiaria(){
+        System.out.println();
+        try{
+            this.consultaDiariaDAO = new ConsultaDiariaDAO();
+            boolean insereConsulta = this.consultaDiariaDAO.cadastarConsultaDiaria(this.paciente, this.sesao);
+            if(insereConsulta){
+                FacesMessage mensagem = new FacesMessage("Consulta diaria adicionada");
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }else{
+                FacesMessage mensagem = new FacesMessage("Falha ao adicionar");
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+        }catch (ClassNotFoundException ex){
+             Logger.getLogger(ConsultaDiariaBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }
     
 //  public void pedidoListarPacientes(){

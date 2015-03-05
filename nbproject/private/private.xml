@@ -5,14 +5,20 @@
         <group>
             <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/ConvenioBean.java</file>
             <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/sessoes.xhtml</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/Bean/Pacientes.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/ConsultaDiariaDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/PacientesDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/Factory/ConnectionFactory.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/Bean/ConvenioConverter.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/consultaDiaria.xhtml</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/ConsultaDiariaBean.java</file>
             <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/convenios.xhtml</file>
             <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/PacientesBean.java</file>
-            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/UsuarioDAO.java</file>
-            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/SessaoBean.java</file>
             <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/ConvenioDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/SessaoBean.java</file>
             <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/index.xhtml</file>
             <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/SessaoDAO.java</file>
-            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/Bean/ConvenioConverter.java</file>
         </group>
     </open-files>
 </project-private>

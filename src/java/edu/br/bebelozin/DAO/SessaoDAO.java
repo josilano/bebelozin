@@ -156,7 +156,7 @@ public class SessaoDAO {
         return null;
     }
     
-    public boolean atualizaSessao(Sessao sesao){
+    public boolean atualizaSessao(Sessao sessao){
         String sql = "UPDATE sessoes SET sess_tipo = ? WHERE sess_id = ?";
                     
                 try (PreparedStatement ps = connection.prepareStatement(sql)){

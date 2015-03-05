@@ -41,7 +41,7 @@
             </p:fieldset>
         </h:form>
         </p:panel>
-        <h:form id="message2">
+        <h:form >
             <p:growl id="message2" showDetail="true" />
             <p:fieldset>
                 <p:autoComplete value="#{sessaoBean.sesao}"
@@ -52,7 +52,7 @@
                         requiredMessage="Você deve informar dados na busca"/>
 
                 <p:commandLink title="Selecionar" action="#{sessaoBean.selecionarSessao()}" 
-                                 actionListener="#{sessaoBean.clicarBotaoPesquisa()}" update="message2">
+                                 actionListener="#{sessaoBean.clicarBotaoPesquisa()}" update=":message2">
                     <p:graphicImage value="/imagens/zoom.svg" style="width: 40px; height: 40px"/>
                 </p:commandLink>
             
@@ -62,7 +62,12 @@
                           closable="false" resizable="false" showHeader="false">
                     <p:graphicImage value="/imagens/ajaxloadingbar.gif" />
                 </p:dialog>
-                
+            </p:fieldset>
+                </h:form>
+                <h:form id="message2">
+                    <p:growl id="message2" showDetail="true" />
+                    <p:fieldset >
+                        
                 <p:panel header="Sessão Selecionada" footer="Exclua ou Altere dados"
                          rendered="#{sessaoBean.sesao.mostraPesquisa}">
                     
