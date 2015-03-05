@@ -3,44 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/ManagedBean/ConvenioBean.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/paginaInicial.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/consultaDiaria.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/ManagedBean/PacientesBean.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/contato.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/css/bebelozinStyle.css</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/PacienteConverter.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/ManagedBean/ConsultaDiariaBean.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/Editora.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/SessaoConverter.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/ConvenioConverter.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/Pacientes.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/pacientes.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/WEB-INF/partials/menu.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/WEB-INF/faces-config.xml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Factory/ConnectionFactory.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/DAO/UsuarioDAO.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/DAO/PacientesDAO.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/Permissao.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/DAO/ConvenioDAO.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/convenios.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/index.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/ManagedBean/EditoraBean.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/Convenio.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/WEB-INF/templates/templateIndex.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/clientes.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/sessoes.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/DAO/SessaoDAO.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/Sessao.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/paginaDeTestes.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/ManagedBean/UsuarioBean.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/WEB-INF/partials/usuarioCabecalho.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/usuario.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/usuarioLogado.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/DAO/EditoraDAO.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/Bean/Usuario.java</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/web/WEB-INF/templates/templateBasico.xhtml</file>
-            <file>file:/C:/Users/Lano_2/Documents/NetBeansProjects/Bebelozin/src/java/edu/br/bebelozin/ManagedBean/SessaoBean.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/ConvenioBean.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/sessoes.xhtml</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/Bean/Pacientes.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/ConsultaDiariaDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/PacientesDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/Factory/ConnectionFactory.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/Bean/ConvenioConverter.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/consultaDiaria.xhtml</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/ConsultaDiariaBean.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/convenios.xhtml</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/PacientesBean.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/ConvenioDAO.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/ManagedBean/SessaoBean.java</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/web/index.xhtml</file>
+            <file>file:/C:/Users/Alcivan%20Silva/Documents/GitHub/bebelozin/src/java/edu/br/bebelozin/DAO/SessaoDAO.java</file>
         </group>
     </open-files>
 </project-private>

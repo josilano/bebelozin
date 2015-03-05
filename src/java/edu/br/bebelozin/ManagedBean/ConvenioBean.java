@@ -146,11 +146,11 @@ public class ConvenioBean {
             this.convenio = this.conveniodao.selecionaConvenio(this.convenio);
             if(convenio != null){
                 this.convenio.setMostraPesquisa(true);
-                FacesMessage mensagem = new FacesMessage("Usuario encontrado"); 
+                FacesMessage mensagem = new FacesMessage("Convenio encontrado"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }
             else{
-                FacesMessage mensagem = new FacesMessage("Usuario não encontrado"); 
+                FacesMessage mensagem = new FacesMessage("Convenio não encontrado"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }
         } catch (ClassNotFoundException ex) {
@@ -159,7 +159,7 @@ public class ConvenioBean {
     }
     
     public void clicarBotaoPesquisa() {
-        addMessage("Sucesso!", "Paciente encontrado.");
+        addMessage("Sucesso!", "Convenio encontrado.");
     }
 //    public void cadastrarLivro(){
 //        
@@ -226,7 +226,7 @@ public class ConvenioBean {
             boolean excluirConvenio = this.conveniodao.excluiConvenio(this.convenio);
             if(excluirConvenio){
                 this.convenio.setMostraPesquisa(false);
-                FacesMessage mensagem = new FacesMessage("Usuario excluído"); 
+                FacesMessage mensagem = new FacesMessage("Convenio excluído"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }else{
                 FacesMessage mensagem = new FacesMessage("Falha na exclusão"); 

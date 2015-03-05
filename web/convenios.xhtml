@@ -41,7 +41,7 @@
             </p:fieldset>
         </h:form>
         </p:panel>
-        <h:form id="message2">
+        <h:form >
             <p:growl id="message2" showDetail="true" />
             <p:fieldset>
                 <p:autoComplete value="#{convenioBean.convenio}"
@@ -51,7 +51,7 @@
                         style="margin-left: 40%" emptyMessage="Não Encontrado" />
 
                 <p:commandLink title="Selecionar" action="#{convenioBean.selecionarConvenio()}" 
-                               actionListener="#{convenioBean.clicarBotaoPesquisa()}" update="message2">
+                               actionListener="#{convenioBean.clicarBotaoPesquisa()}" update=":message2">
                     <p:graphicImage value="/imagens/zoom.svg" style="width: 40px; height: 40px"/>
                 </p:commandLink>
             
@@ -61,7 +61,11 @@
                           closable="false" resizable="false" showHeader="false">
                     <p:graphicImage value="/imagens/ajaxloadingbar.gif" />
                 </p:dialog>
-                
+            </p:fieldset>
+        </h:form>
+        <h:form id="message2">
+            <p:growl id="message2" showDetail="true"/>
+            <p:fieldset>
                 <p:panel header="Convenio Selecionado" footer="Exclua ou Altere dados"
                          rendered="#{convenioBean.convenio.mostraPesquisa}">
                     
