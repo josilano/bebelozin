@@ -42,7 +42,7 @@ public class ConsultaDiariaDAO {
                 ps.setString(3, sesao.getTipoDeSessao());
                     
                     int retornos = ps.executeUpdate();
-                    System.out.println(retornos);
+                  
                         if(retornos == 1){
                             return true;
                         }
