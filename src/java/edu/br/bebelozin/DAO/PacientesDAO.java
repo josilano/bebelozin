@@ -12,6 +12,7 @@ import edu.br.bebelozin.Bean.Usuario;
 import edu.br.bebelozin.Factory.ConnectionFactory;
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -231,4 +232,5 @@ public class PacientesDAO {
        
         return null;
     }
+    
 }

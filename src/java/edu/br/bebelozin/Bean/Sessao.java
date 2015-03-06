@@ -5,7 +5,8 @@
  */
 package edu.br.bebelozin.Bean;
 
-import java.io.Serializable;
+import java.util.List;
+
 
 /**
  *
@@ -16,6 +17,7 @@ public class Sessao {
     private int idSessao;
     private String tipoDeSessao;
     private boolean mostraPesquisa;
+    private List<String> sessaolista;
 
     public int getIdSessao() {
         return idSessao;
@@ -40,4 +42,13 @@ public class Sessao {
     public void setMostraPesquisa(boolean mostraPesquisa) {
         this.mostraPesquisa = mostraPesquisa;
     }
+
+    public List<String> getSessaolista() {
+        return sessaolista;
+    }
+
+    public void setSessaolista(List<String> sessaolista) {
+        this.sessaolista = sessaolista;
+    }
+
 }

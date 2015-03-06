@@ -28,21 +28,21 @@ import javax.faces.context.FacesContext;
 @ViewScoped
 public class SessaoBean {
     
-    private Sessao sesao;
+    private Sessao sessao;
     private SessaoDAO sessaodao;
     private List<Sessao> listaSessao;
     
     public SessaoBean(){
-        this.sesao = new Sessao();
+        this.sessao = new Sessao();
     }
 
     //gets e sets
     public Sessao getSesao() {
-        return sesao;
+        return sessao;
     }
 
     public void setSesao(Sessao sesao) {
-        this.sesao = sesao;
+        this.sessao = sesao;
     }
 
     public SessaoDAO getSessaodao() {
@@ -65,7 +65,7 @@ public class SessaoBean {
     public void cadastrarSessao(){
         try {
             this.sessaodao = new SessaoDAO();
-            boolean insereSessao = this.sessaodao.cadastraSessao(this.sesao);
+            boolean insereSessao = this.sessaodao.cadastraSessao(this.sessao);
             if(insereSessao){
                 FacesMessage mensagem = new FacesMessage("Sessão adicionada"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -76,7 +76,7 @@ public class SessaoBean {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SessaoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.sesao = new Sessao();  
+        this.sessao = new Sessao();  
     }
     
     public void clicarBotaoCadastraSessao() {
@@ -116,9 +116,9 @@ public class SessaoBean {
     public void selecionarSessao(){
         try {
             this.sessaodao = new SessaoDAO();
-            this.sesao = this.sessaodao.selecionaSessao(this.sesao);
-            if(this.sesao != null){
-                this.sesao.setMostraPesquisa(true);
+            this.sessao = this.sessaodao.selecionaSessao(this.sessao);
+            if(this.sessao != null){
+                this.sessao.setMostraPesquisa(true);
                 FacesMessage mensagem = new FacesMessage("Sessão encontrada"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }
@@ -138,9 +138,9 @@ public class SessaoBean {
     public void alteraSessao(){
         try {
             this.sessaodao = new SessaoDAO();
-            boolean alteraSessao = this.sessaodao.atualizaSessao(this.sesao);
+            boolean alteraSessao = this.sessaodao.atualizaSessao(this.sessao);
             if(alteraSessao){
-                this.sesao.setMostraPesquisa(false);
+                this.sessao.setMostraPesquisa(false);
                 FacesMessage mensagem = new FacesMessage("Sessão alterada"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }else{
@@ -150,7 +150,7 @@ public class SessaoBean {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.sesao = new Sessao();
+        this.sessao = new Sessao();
     }
     
     public void clicarBotaoAltera() {
@@ -160,9 +160,9 @@ public class SessaoBean {
     public void excluiSessao(){
         try {
             this.sessaodao = new SessaoDAO();
-            boolean excluirSessao = this.sessaodao.excluiSessao(this.sesao);
+            boolean excluirSessao = this.sessaodao.excluiSessao(this.sessao);
             if(excluirSessao){
-                this.sesao.setMostraPesquisa(false);
+                this.sessao.setMostraPesquisa(false);
                 FacesMessage mensagem = new FacesMessage("Sessão excluída"); 
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }else{
@@ -172,7 +172,7 @@ public class SessaoBean {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(SessaoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.sesao = new Sessao();
+        this.sessao = new Sessao();
     }
     
     public void clicarBotaoExclui() {
@@ -180,7 +180,7 @@ public class SessaoBean {
     }
     
     public void limpar(){
-        this.sesao = new Sessao();
+        this.sessao = new Sessao();
     }
     
     public void listaCompletaSessao(){
