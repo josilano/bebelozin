@@ -12,12 +12,21 @@ import java.util.List;
  *
  * @author Lano_2
  */
-public class Sessao {
+public class Sessao extends Pacientes{
     
     private int idSessao;
     private String tipoDeSessao;
     private boolean mostraPesquisa;
     private List<String> sessaolista;
+     private List <Sessao> listaConsulta;
+
+    public void setListaConsulta(List<Sessao> listaConsulta) {
+        this.listaConsulta = listaConsulta;
+    }
+     
+    public List<Sessao> getListaConsulta() {
+        return listaConsulta;
+    }
 
     public int getIdSessao() {
         return idSessao;

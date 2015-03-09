@@ -25,7 +25,7 @@ import javax.faces.context.FacesContext;
  * @author Lano_2
  */
 @ManagedBean
-@ViewScoped
+
 public class SessaoBean {
     
     private Sessao sessao;

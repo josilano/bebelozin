@@ -27,7 +27,7 @@ import javax.faces.context.FacesContext;
  * @author Lano_2
  */
 @ManagedBean
-@ViewScoped
+
 public class ConvenioBean {
     
     private Convenio convenio;
@@ -180,10 +180,12 @@ public class ConvenioBean {
 //    }
 //    
     public void alteraConvenio(){
-        
+        System.out.println("entrou no alterar convenio mb com valor: " + this.convenio.getTipoDeConvenio());
+        System.out.println("chegado" + this.convenio.getIdConvenio());
         try {
             this.conveniodao = new ConvenioDAO();
             boolean alteraConvenio = this.conveniodao.atualizaConvenio(this.convenio);
+            System.out.println("valor de retorno altera" + alteraConvenio);
             if(alteraConvenio){
                 this.convenio.setMostraPesquisa(false);
                 FacesMessage mensagem = new FacesMessage("Convênio alterado"); 

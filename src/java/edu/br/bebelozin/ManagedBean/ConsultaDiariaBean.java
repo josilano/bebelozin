@@ -35,6 +35,11 @@ public class ConsultaDiariaBean {
     private Sessao sessao;
     private SessaoDAO sessaodao;
     private List<Sessao> listaSessao;
+    private List<Sessao> listaSessoesConsulta;
+
+   
+    private Convenio convenio; 
+
     
     private Pacientes paciente;
     private PacientesDAO pacientedao;
@@ -42,14 +47,18 @@ public class ConsultaDiariaBean {
     
     private ConsultaDiariaDAO consultaDiariadao;
     
-    private String particular = "PARTICULAR";
+    private String particular ;
     
+
+     
     public ConsultaDiariaBean(){
         this.sessao = new Sessao();
         this.paciente = new Pacientes();
+        this.convenio = new Convenio();
     }
 
     //gets e sets
+    
     public Sessao getSessao() {
         return sessao;
     }
@@ -107,12 +116,28 @@ public class ConsultaDiariaBean {
     }
 
     public String getParticular() {
-        return particular;
+        return "PARTICULAR";
     }
 
     public void setParticular(String particular) {
         this.particular = particular;
     }
+    public Convenio getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(Convenio convenio) {
+        this.convenio = convenio;
+    }
+
+    public List<Sessao> getListaSessoesConsulta() {
+        return listaSessoesConsulta;
+    }
+
+    public void setListaSessoesConsulta(List<Sessao> listaSessoesConsulta) {
+        this.listaSessoesConsulta = listaSessoesConsulta;
+    }
+    
     
     
     public void limpar(){
@@ -149,13 +174,10 @@ public class ConsultaDiariaBean {
             this.listaConsultaDiaria.add(this.paciente);
                 System.out.println(this.listaConsultaDiaria.get(0).getNomePaciente());
             if(montarConsulta){
-                
-                
-                
-                
-                this.paciente.setMostrapesquisa(true);
-                FacesMessage mensagem = new FacesMessage("Usuario encontrado"); 
-                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+              
+               
+                retornoConsultaDiaria();
+               
             }
             else{
                 FacesMessage mensagem = new FacesMessage("Usuario não encontrado"); 
@@ -164,6 +186,24 @@ public class ConsultaDiariaBean {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    
+    public void retornoConsultaDiaria(){
+        try {
+            this.consultaDiariadao = new ConsultaDiariaDAO();
+            this.listaSessoesConsulta = this.consultaDiariadao.returnConsultaDiaria();
+            if(this.listaSessoesConsulta != null){
+                this.sessao.setMostraPesquisa(true);
+                FacesMessage mensagem = new FacesMessage("Lista encontrada"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+            this.sessao.setMostraPesquisa(true);
+            FacesMessage mensagem = new FacesMessage("Lista encontrado"); 
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ConsultaDiariaBean.class.getName()).log(Level.SEVERE, null, ex);
+          }
     }
     
    public void montaConsultaDiaria(){

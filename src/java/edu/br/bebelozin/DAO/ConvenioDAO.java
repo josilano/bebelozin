@@ -164,9 +164,11 @@ public class ConvenioDAO {
                 try (PreparedStatement ps = connection.prepareStatement(sql)){
                     ps.setString(1, convenio.getTipoDeConvenio());
                     ps.setInt(2, convenio.getIdConvenio());
-
+                        System.out.println("valor chegado " + convenio.getTipoDeConvenio());
+                        System.out.println("valor chegado " + convenio.getIdConvenio());
                         int retornos = ps.executeUpdate();
                             if(retornos == 1){
+                                System.out.println("atualiza convenioDAO:" + retornos);
                                 return true;
                             }
                 } catch (SQLException ex) {

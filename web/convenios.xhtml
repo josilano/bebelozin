@@ -66,13 +66,14 @@
         <h:form id="message2">
             <p:growl id="message2" showDetail="true"/>
             <p:fieldset>
-                <p:panel header="Convenio Selecionado" footer="Exclua ou Altere dados"
-                         rendered="#{convenioBean.convenio.mostraPesquisa}">
+                <p:panel header="Convenio Selecionado" footer="Exclua ou Altere dados">
+                         <!--rendered="{convenioBean.convenio.mostraPesquisa}">-->
                     
                     <h:panelGrid columns="2">
                         
                         <p:inputText value="#{convenioBean.convenio.tipoDeConvenio}" 
-                        required="true" autocomplete="" placeholder="Tipo de Convenio" />         
+                        required="true" autocomplete="" placeholder="Tipo de Convenio" />   
+                        <h:inputHidden value="#{convenioBean.convenio.idConvenio}" />
             
                         <p:commandLink action="#{convenioBean.excluiConvenio()}"
                                      actionListener="#{convenioBean.clicarBotaoExclui()}" update="message2"
@@ -81,14 +82,15 @@
                                        icon="ui-icon-alert" />
                             <p:graphicImage value="/imagens/trash.png" style="width: 40px; height: 40px"/>
                         </p:commandLink>
-                    
+                       
                         <p:commandLink title="Salvar Alteração" action="#{convenioBean.alteraConvenio()}" 
                                          actionListener="#{convenioBean.clicarBotaoAltera()}" update="message2">
                             <p:confirm header="Confirmação" message="Confirma Alteração?" icon="ui-icon-alert" />
                             <p:graphicImage value="/imagens/transfer.png" style="width: 40px; height: 40px"/>
                         </p:commandLink>
+                                         
                     </h:panelGrid>
-                
+                        
                     </p:panel>
             </p:fieldset>
         </h:form>

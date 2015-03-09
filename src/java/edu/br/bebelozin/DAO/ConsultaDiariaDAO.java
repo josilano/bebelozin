@@ -8,6 +8,7 @@ package edu.br.bebelozin.DAO;
 
 import edu.br.bebelozin.Bean.Convenio;
 import edu.br.bebelozin.Bean.Pacientes;
+import edu.br.bebelozin.Bean.Semanal;
 import edu.br.bebelozin.Bean.Sessao;
 import edu.br.bebelozin.Bean.Usuario;
 import edu.br.bebelozin.Factory.ConnectionFactory;
@@ -43,23 +44,36 @@ public class ConsultaDiariaDAO {
         this.sessao = new Sessao();
     }
     
-    public boolean montandoConsultaDoPaciente(Pacientes paciente, List<String> sessaolista){             
-        String sql = "INSERT INTO sess_sem (sem_data, pac_id, sess_tipo)"
-            + "VALUES (?, ?, ?)";
-                for(int i = 0; i <= this.sessao.getSessaolista().size(); i++)
-                try (PreparedStatement ps = connection.prepareStatement(sql)){
-                    ps.setDate(1, new Date(paciente.getDiaConsulta().getTime()));
-                    ps.setInt(2, paciente.getIdPaciente());
-                    ps.setString(3, sessaolista.get(i));
+    public boolean montandoConsultaDoPaciente(Pacientes paciente, List<String> sessaolista  ){             
+        String sql = "INSERT INTO sess_sem ( sem_data, pac_id, sess_tipo, conv_tipo, sem_pagamento, pac_nome, pac_diagnostico)"
+            + "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+            System.out.println(sessaolista.size());       
+               boolean retorno = false;
+            try{
+                for(int i = 0; i < sessaolista.size(); i++){
+                    
+                    try (PreparedStatement ps = connection.prepareStatement(sql)){
+                    
+                      ps.setDate(1, new Date(paciente.getDiaConsulta().getTime()));
+                      ps.setInt(2, paciente.getIdPaciente());
+                      ps.setString(3, sessaolista.get(i));
+                      ps.setString(4, paciente.getConvenioPaciente());
+                      ps.setBoolean(5, paciente.isPagamento());
+                      ps.setString(6, paciente.getNomePaciente());
+                      ps.setString(7, paciente.getDoencaPaciente());
                     
                                            
                         int retornos = ps.executeUpdate();
                             if(retornos == 1){
-                                return true;
+                                retorno = true;
+                            }else{
+                                retorno = false;
                             }
-                } catch (SQLException ex) {
+                     } catch (SQLException ex) {
                     Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }finally{
+                    }
+                } return retorno; 
+            }finally{
                 if(connection != null){
                 try {
                     connection.close();
@@ -70,6 +84,81 @@ public class ConsultaDiariaDAO {
             }
         }
        
-        return false;
+       
     }
+//    public boolean montandoCadastroSemanal(Pacientes paciente, Convenio convenio){             
+//        String sql = "INSERT INTO semanal ( sem_data, pac_id, conv_tipo)"
+//            + "VALUES ( ?, ?, ?)";
+//                 
+//               boolean retorno = false;
+//            
+//            
+//                    System.out.println(convenio.getTipoDeConvenio());
+//                    try (PreparedStatement ps = connection.prepareStatement(sql)){
+//                    
+//                      ps.setDate(1, new Date(paciente.getDiaConsulta().getTime()));
+//                      ps.setInt(2, paciente.getIdPaciente());
+//                      ps.setString(3, paciente.getConvenioPaciente());
+//                    
+//                                           
+//                        int retornos = ps.executeUpdate();
+//                            if(retornos == 1){
+//                                retorno = true;
+//                            }else{
+//                                retorno = false;
+//                            }
+//                     } catch (SQLException ex) {
+//                    Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                    }finally{
+//                if(connection != null){
+//                try {
+//                    connection.close();
+//                    System.out.println("Desconectado com banco!");
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        }
+//        return false;
+//       
+//    }
+    public List<Sessao> returnConsultaDiaria(){
+        String sql = "SELECT * FROM sess_sem ORDER BY sess_sem_id DESC";
+        List<Sessao> lista = new ArrayList<>();
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+           
+            ResultSet result = ps.executeQuery();
+           while(result.next()){
+               Sessao sesao = new Sessao();
+               sesao.setTipoDeSessao(result.getString("sess_tipo"));
+               sesao.setDiaConsulta(result.getDate("sem_data"));
+               sesao.setIdPaciente(result.getInt("pac_id"));
+               sesao.setConvenioPaciente(result.getString("conv_tipo"));
+               sesao.setPagamento(result.getBoolean("sem_pagamento"));
+               sesao.setNomePaciente(result.getString("pac_nome"));
+               sesao.setDoencaPaciente(result.getString("pac_diagnostico"));
+               
+               
+               lista.add(sesao);
+           }
+               return lista;
+       }catch(SQLException ex){
+           Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+       }finally{
+           if(connection != null){
+               try{
+                   connection.close();
+                   System.out.println("Desconectado com o banco!");
+               }catch(SQLException ex){
+                   Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           } 
+        }
+        return null;
+      
+    }
+   
 }
+    
+    
+

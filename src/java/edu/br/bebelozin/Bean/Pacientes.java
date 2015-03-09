@@ -71,7 +71,7 @@ public class Pacientes {
     }
 
     public Date getDiaConsulta() {
-        return diaConsulta;
+        return new Date() ;
     }
 
     public void setDiaConsulta(Date diaConsulta) {

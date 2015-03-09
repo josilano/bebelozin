@@ -68,14 +68,14 @@
                     <p:growl id="message2" showDetail="true" />
                     <p:fieldset >
                         
-                <p:panel header="Sessão Selecionada" footer="Exclua ou Altere dados"
-                         rendered="#{sessaoBean.sesao.mostraPesquisa}">
+                <p:panel header="Sessão Selecionada" footer="Exclua ou Altere dados" >
+                         <!--rendered="{sessaoBean.sesao.mostraPesquisa}">-->
                     
                     <h:panelGrid columns="2">
                         
                         <p:inputText value="#{sessaoBean.sesao.tipoDeSessao}" 
                         required="true" autocomplete="" placeholder="Tipo de Sessão" />         
-            
+                        <h:inputHidden value="#{sessaoBean.sesao.idSessao}" />
                         <p:commandLink action="#{sessaoBean.excluiSessao()}"
                                      actionListener="#{sessaoBean.clicarBotaoExclui()}" update="message2"
                                       title="Excluir">
