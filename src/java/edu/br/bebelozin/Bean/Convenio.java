@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Lano_2
  */
-public class Convenio {
+public class Convenio extends Pacientes{
     
     private int idConvenio;
     private String tipoDeConvenio;

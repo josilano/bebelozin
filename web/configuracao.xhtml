@@ -1,0 +1,48 @@
+<ui:composition template="/WEB-INF/templates/templateBasico.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+          
+    <ui:define name="title">Configuração</ui:define>
+    <ui:define name="center">
+        <p:panel style="background-color: #333333">
+        <h:form id="message">
+            <p:growl id="message" showDetail="true" />
+            
+            <p:fieldset legend="Cadastrar Valor da Consulta" toggleable="true" toggleSpeed="500">
+                <h:panelGrid columns="2">         
+                   
+                    <p:outputLabel value="Valor da Consulta" for="campo-valor-consulta" />
+                    <p:inputText value="#{usuarioBean.usuario.valorConsulta}" id="campo-valor-consulta" 
+                                 required="true" autocomplete="" placeholder="Valor da Consulta"
+                                 requiredMessage="Campo não pode ser nulo"/>
+
+                </h:panelGrid>
+                
+                <p:commandLink title="Cadastrar" action="#{usuarioBean.cadastrarValorConsulta()}" 
+                               actionListener="#{usuarioBean.save()}"
+                               update="message" style="margin-left: 16.7%; border-right: 1px solid #330066">
+                    <p:confirm header="Confirmação" message="Deseja Realmente Cadastrar?" 
+                               icon="ui-icon-alert" />
+                    <p:graphicImage value="/imagens/save.png" />
+                </p:commandLink>
+                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                    <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                    <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                </p:confirmDialog>
+                
+                <p:commandLink action="#{sessaoBean.limpar()}" title="Limpar" update="message" 
+                               style="border-left: 1px solid #330066">
+                    <p:graphicImage value="/imagens/borracha.png" />
+                </p:commandLink>
+                
+            </p:fieldset>
+        </h:form>
+        </p:panel>
+        
+    </ui:define>
+    
+</ui:composition>

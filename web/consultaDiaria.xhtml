@@ -50,56 +50,56 @@
                 <p:outputLabel value="#{consultaDiariaBean.paciente.doencaPaciente}" />
                 
                 <h:selectManyCheckbox value="#{consultaDiariaBean.sessao.sessaolista}" 
-                                      layout="pageDirectiongrid">
+                                      layout="pageDirectiongrid" id="campo-sessoes-consulta">
                     <f:selectItems value="#{consultaDiariaBean.listaSessao}"
                                    var="sessao"
                                    itemValue="#{sessao.tipoDeSessao}"
                                    itemLabel="#{sessao.tipoDeSessao}" />
                 </h:selectManyCheckbox>
                 
-                <p:selectBooleanButton offLabel="Não" onLabel="Sim" 
-                                       disabled="#{paciente.convenioPaciente != consultaDiariaBean.particular}"
+                <p:selectBooleanButton offLabel="Não" onLabel="Sim" id="campo-pagamento-consulta"
+                                       
                                        value="#{consultaDiariaBean.paciente.pagamento}"/>
                 
                 <p:commandLink action="#{consultaDiariaBean.addConsultaDiaria()}" update="message2" >
                     <p:graphicImage value="/imagens/new.png" style="width: 40px; height: 40px"/>
                 </p:commandLink>
                 
-                <h:inputHidden value="#{consultaDiariaBean.paciente.idPaciente}" />
-                <h:inputHidden value="#{consultaDiariaBean.paciente.convenioPaciente}" />
-                <h:inputHidden value="#{consultaDiariaBean.paciente.doencaPaciente}" />
+                <h:inputHidden value="#{consultaDiariaBean.paciente.idPaciente}" id="campo-id-paciente-consulta" />
+                <h:inputHidden value="#{consultaDiariaBean.paciente.convenioPaciente}" id="campo-convenio-consulta"/>
+                <h:inputHidden value="#{consultaDiariaBean.paciente.doencaPaciente}" id="campo-doenca-consulta" />
                 
             </p:panelGrid>
             </p:fieldset>
             
-            
-        </h:form>
-           
-        </p:panel>
-         <p:dataTable var="consulta" value="#">
+            <p:dataTable var="consulta" value="#{consultaDiariaBean.listaConsulta}">
                 <f:facet name="header"><p:outputLabel value="Consulta Diária" /></f:facet>
                 
                 <p:column>
                     <f:facet name="header" ><p:outputLabel value="Paciente" /></f:facet>
-                    <p:outputLabel value="#" />
+                    <p:outputLabel value="#{consulta.nomePaciente}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header"><p:outputLabel value="Diagnóstico" /></f:facet>
-                    <p:outputLabel value="#"/>
+                    <p:outputLabel value="#{consulta.doencaPaciente}"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header"><p:outputLabel value="Convênio" /></f:facet>
-                    <p:outputLabel value="#"/>
+                    <p:outputLabel value="#{consulta.doencaPaciente}"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header"><p:outputLabel value="Pagamento" /></f:facet>
-                    <p:outputLabel value="#"/>
+                    <p:outputLabel value="#{consulta.pagamento}"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header"><p:outputLabel value="Sessões" /></f:facet>
-                    <p:outputLabel value="#"/>
+                    <p:outputLabel value="#{consulta.sessaolista}"/>
                 </p:column>
             </p:dataTable>
+        </h:form>
+           
+        </p:panel>
+         
     </ui:define>
     
 </ui:composition>

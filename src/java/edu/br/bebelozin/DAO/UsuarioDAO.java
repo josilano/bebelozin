@@ -26,24 +26,24 @@ import java.util.logging.Logger;
 public class UsuarioDAO {
     
     private Connection connection;
-    private Usuario livro;
+    private Usuario usuario;
     
     public UsuarioDAO() 
             throws ClassNotFoundException{
         this.connection = new ConnectionFactory().getConnection();
         System.out.println("Conectado!");
-        livro = new Usuario();
+        usuario = new Usuario();
     }
     
 
-    public boolean cadastraLivro(Usuario livro){             
-        String sql = "INSERT INTO livro (liv_titulo, liv_ano, liv_genero)"
-            + "VALUES (?, ?, ?)";
+    public boolean cadastraValorConsulta(Usuario usuario){             
+        String sql = "UPDATE usuario SET usu_valor_consulta = ?"
+            + "WHERE usu_id = ?";
                     
                 try (PreparedStatement ps = connection.prepareStatement(sql)){
-//                    ps.setString(1, livro.getTitulo());
-//                    ps.setString(2, livro.getAno());
-//                    ps.setString(3, livro.getGenero());
+                    ps.setDouble(1, usuario.getValorConsulta());
+                    ps.setInt(2, usuario.getIdUsuario());
+                    
                                            
                         int retornos = ps.executeUpdate();
                             if(retornos == 1){
@@ -199,7 +199,8 @@ public class UsuarioDAO {
                     usuarioLogado.setSenha(usuario.getSenha());
                     usuarioLogado.setIdUsuario(result.getInt("usu_id"));
                     usuarioLogado.setTel(result.getString("usu_tel"));
-                    
+                    usuarioLogado.setValorConsulta(result.getInt("usu_valor_consulta"));
+                    System.out.println("valor da consulta do usuario " + usuarioLogado.getValorConsulta());
                     return usuarioLogado;  
                 }
         }catch(SQLException e){

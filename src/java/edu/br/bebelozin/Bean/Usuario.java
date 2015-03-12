@@ -5,7 +5,6 @@
  */
 package edu.br.bebelozin.Bean;
 
-import java.io.Serializable;
 
 /**
  *
@@ -17,6 +16,7 @@ public class Usuario {
     private String nomeUsuario;
     private String tel;
     private String senha;
+    private int valorConsulta;
     
     private String convenio;
 
@@ -58,6 +58,14 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = String.valueOf(senha);
+    }
+
+    public int getValorConsulta() {
+        return valorConsulta;
+    }
+
+    public void setValorConsulta(int valorConsulta) {
+        this.valorConsulta = valorConsulta;
     }
     
 }

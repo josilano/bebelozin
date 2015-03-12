@@ -44,22 +44,71 @@ public class ConsultaDiariaDAO {
     }
     
     public boolean montandoConsultaDoPaciente(Pacientes paciente, List<String> sessaolista){             
-        String sql = "INSERT INTO sess_sem (sem_data, pac_id, sess_tipo)"
-            + "VALUES (?, ?, ?)";
-                for(int i = 0; i <= this.sessao.getSessaolista().size(); i++)
-                try (PreparedStatement ps = connection.prepareStatement(sql)){
-                    ps.setDate(1, new Date(paciente.getDiaConsulta().getTime()));
-                    ps.setInt(2, paciente.getIdPaciente());
-                    ps.setString(3, sessaolista.get(i));
-                    
-                                           
-                        int retornos = ps.executeUpdate();
-                            if(retornos == 1){
-                                return true;
+        String sqls = "INSERT INTO semanal (sem_data, pac_id, sem_pagmto, conv_tipo, pac_nome, pac_doenca)"
+            + "VALUES (?, ?, ?, ?, ?, ?)";
+        boolean verificacao = false;
+        System.out.println("entrou no montarConsulta do dao");
+            try (PreparedStatement pst = connection.prepareStatement(sqls)){
+                pst.setDate(1, new Date(paciente.getDiaConsulta().getTime()));
+                pst.setInt(2, paciente.getIdPaciente());
+                pst.setBoolean(3, paciente.isPagamento());
+                pst.setString(4, paciente.getConvenioPaciente());
+                pst.setString(5, paciente.getNomePaciente());
+                pst.setString(6, paciente.getDoencaPaciente());
+                
+                    int retorno = pst.executeUpdate();
+                        if(retorno == 1){
+                            
+                            String sql = "INSERT INTO sess_sem (sem_data, pac_id, sess_tipo, "
+                                    + "sem_pagmto, conv_tipo, pac_nome, pac_doenca)"
+                                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+                            try (PreparedStatement ps = connection.prepareStatement(sql)){
+                                for(int i = 0; i < sessaolista.size(); i++){  
+                                    ps.setDate(1, new Date(paciente.getDiaConsulta().getTime()));
+                                    ps.setInt(2, paciente.getIdPaciente());
+                                    ps.setString(3, sessaolista.get(i));
+                                    ps.setBoolean(4, paciente.isPagamento());
+                                    ps.setString(5, paciente.getConvenioPaciente());
+                                    ps.setString(6, paciente.getNomePaciente());
+                                    ps.setString(7, paciente.getDoencaPaciente());
+                                        System.out.println("volta nº " + i);
+                                        int retornos = ps.executeUpdate();
+                                            if(retornos == 1){
+                                                verificacao = true;
+                                            }
+                                }
+                                return verificacao;
+                            } catch (SQLException ex) {
+                                Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                } catch (SQLException ex) {
+                        }
+            } catch (SQLException ex) {
                     Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }finally{
+            }
+//        String sql = "INSERT INTO sess_sem (sem_data, pac_id, sess_tipo, sem_pagmto, conv_tipo, pac_nome)"
+//            + "VALUES (?, ?, ?, ?, ?, ?)";
+        //boolean verificacao = false;
+        //System.out.println("entrou no montarConsulta do dao");
+//                try (PreparedStatement ps = connection.prepareStatement(sql)){
+//                    for(int i = 0; i < sessaolista.size(); i++){  
+//                        ps.setDate(1, new Date(paciente.getDiaConsulta().getTime()));
+//                        ps.setInt(2, paciente.getIdPaciente());
+//                        ps.setString(3, sessaolista.get(i));
+//                        ps.setBoolean(4, paciente.isPagamento());
+//                        ps.setString(5, paciente.getConvenioPaciente());
+//                        ps.setString(6, paciente.getNomePaciente());
+//                                           System.out.println("volta nº " + i);
+//                            int retornos = ps.executeUpdate();
+//                                if(retornos == 1){
+//                                    verificacao = true;
+//                                }
+//                    }
+//                    return verificacao;
+//                } catch (SQLException ex) {
+//                    Logger.getLogger(ConsultaDiariaDAO.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+            finally{
                 if(connection != null){
                 try {
                     connection.close();
@@ -70,6 +119,6 @@ public class ConsultaDiariaDAO {
             }
         }
        
-        return false;
+        return verificacao;
     }
 }

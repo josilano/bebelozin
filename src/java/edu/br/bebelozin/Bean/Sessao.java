@@ -5,6 +5,7 @@
  */
 package edu.br.bebelozin.Bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,12 +13,12 @@ import java.util.List;
  *
  * @author Lano_2
  */
-public class Sessao {
+public class Sessao extends Pacientes{
     
     private int idSessao;
     private String tipoDeSessao;
     private boolean mostraPesquisa;
-    private List<String> sessaolista;
+    private List<String> sessaolista = new ArrayList<>();
 
     public int getIdSessao() {
         return idSessao;

@@ -104,7 +104,7 @@ public class PacientesBean {
                 }else{
                 }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PacientesBean.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

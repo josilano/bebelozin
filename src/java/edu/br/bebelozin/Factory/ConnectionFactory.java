@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
  
     private final String driver = "org.postgresql.Driver";
-    private final String url = "jdbc:postgresql://localhost/bebelozin", usuario = "postgres", senha = "lanodupi";
+    private final String url = "jdbc:postgresql://localhost/bebelozin", usuario = "postgres", senha = "";
     
     public Connection getConnection(){
         try{

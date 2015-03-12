@@ -5,6 +5,9 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:p="http://primefaces.org/ui">
           
-    
+    <ui:define name="title">Saldo</ui:define>
+    <ui:define name="center">
+        <p:chart type="bar" model="#{saldoBean.graficoModel}" style="width:400px;" />
+    </ui:define>
     
 </ui:composition>

@@ -8,7 +8,6 @@ package edu.br.bebelozin.ManagedBean;
 import edu.br.bebelozin.Bean.Convenio;
 import edu.br.bebelozin.Bean.Usuario;
 import edu.br.bebelozin.DAO.UsuarioDAO;
-import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,23 +89,23 @@ public class UsuarioBean {
     }
     
     
-    public void cadastrarUsuario(){
-        
-        try {
-            this.usuariodao = new UsuarioDAO();
-            boolean insereLivro = this.usuariodao.cadastraLivro(this.usuario);
-            if(insereLivro){
-                FacesMessage mensagem = new FacesMessage("Usuario adicionado"); 
-                FacesContext.getCurrentInstance().addMessage(null, mensagem);
-            }else{
-                FacesMessage mensagem = new FacesMessage("Falha no cadastro"); 
-                FacesContext.getCurrentInstance().addMessage(null, mensagem);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.usuario = new Usuario();  
-    }
+//    public void cadastrarUsuario(){
+//        
+//        try {
+//            this.usuariodao = new UsuarioDAO();
+//            boolean insereLivro = this.usuariodao.cadastraLivro(this.usuario);
+//            if(insereLivro){
+//                FacesMessage mensagem = new FacesMessage("Usuario adicionado"); 
+//                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+//            }else{
+//                FacesMessage mensagem = new FacesMessage("Falha no cadastro"); 
+//                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        this.usuario = new Usuario();  
+//    }
     
     public void save() {
         addMessage("Success", "Data saved");
@@ -146,6 +145,24 @@ public class UsuarioBean {
         }
         
         return "index";
+    }
+    
+    public void cadastrarValorConsulta(){
+        
+        try {
+            this.usuariodao = new UsuarioDAO();
+            boolean insereValorConsulta = this.usuariodao.cadastraValorConsulta(this.usuario);
+            if(insereValorConsulta){
+                FacesMessage mensagem = new FacesMessage("Valor adicionado"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }else{
+                FacesMessage mensagem = new FacesMessage("Falha no cadastro"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.usuario = new Usuario();  
     }
 //    public void cadastrarLivro(){
 //        

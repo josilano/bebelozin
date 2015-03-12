@@ -8,12 +8,14 @@ package edu.br.bebelozin.ManagedBean;
 import edu.br.bebelozin.Bean.Convenio;
 import edu.br.bebelozin.Bean.Pacientes;
 import edu.br.bebelozin.Bean.Sessao;
+import edu.br.bebelozin.Bean.Usuario;
 import edu.br.bebelozin.DAO.ConsultaDiariaDAO;
 import edu.br.bebelozin.DAO.ConvenioDAO;
 import edu.br.bebelozin.DAO.PacientesDAO;
 import edu.br.bebelozin.DAO.SessaoDAO;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +23,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 
 /**
@@ -29,13 +35,11 @@ import javax.faces.context.FacesContext;
  */
 @ManagedBean
 @ViewScoped
-public class ConsultaDiariaBean {
+public class SaldoBean {
     
     private Sessao sessao;
     private SessaoDAO sessaodao;
     private List<Sessao> listaSessao;
-    //lista das consultas diárias
-    private List<Sessao> listaConsulta;
     
     private Pacientes paciente;
     private PacientesDAO pacientedao;
@@ -43,14 +47,22 @@ public class ConsultaDiariaBean {
     
     private ConsultaDiariaDAO consultaDiariadao;
     
-    private String particular = "PARTICULAR";
+    private BarChartModel graficoModel;
+    private Usuario usuario;
     
-    public ConsultaDiariaBean(){
+    public SaldoBean(){
         this.sessao = new Sessao();
         this.paciente = new Pacientes();
+        
+        createAnimatedModels();
     }
 
     //gets e sets
+    
+    public BarChartModel getGraficoModel() {
+        return graficoModel;
+    }
+
     public Sessao getSessao() {
         return sessao;
     }
@@ -107,14 +119,6 @@ public class ConsultaDiariaBean {
         this.consultaDiariadao = consultaDiadiadao;
     }
 
-    public String getParticular() {
-        return particular;
-    }
-
-    public void setParticular(String particular) {
-        this.particular = particular;
-    }
-
     public ConsultaDiariaDAO getConsultaDiariadao() {
         return consultaDiariadao;
     }
@@ -123,17 +127,90 @@ public class ConsultaDiariaBean {
         this.consultaDiariadao = consultaDiariadao;
     }
 
-    public List<Sessao> getListaConsulta() {
-        return listaConsulta;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setListaConsulta(List<Sessao> listaConsulta) {
-        this.listaConsulta = listaConsulta;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     
     
     public void limpar(){
         this.sessao = new Sessao();
+    }
+    
+    private void createAnimatedModels() {       
+        graficoModel = initGraficoBarModel();
+        graficoModel.setTitle("Pagamentos do Mês");
+        graficoModel.setAnimate(true);
+        graficoModel.setLegendPosition("ne");
+        Axis yAxis = graficoModel.getAxis(AxisType.Y);
+        yAxis.setMin(0);
+        yAxis.setMax(somarDevido() + 10);
+    }
+    
+    private BarChartModel initGraficoBarModel() {
+        BarChartModel model = new BarChartModel();
+ 
+        ChartSeries pagos = new ChartSeries();
+        pagos.setLabel("Consultas Pagas");
+        pagos.set(new Date(), somarPago());
+//        pagos.set("2005", 100);
+//        pagos.set("2006", 44);
+//        pagos.set("2007", 150);
+//        pagos.set("2008", 25);
+ 
+        ChartSeries devido = new ChartSeries();
+        devido.setLabel("Total a Receber");
+        devido.set(new Date(), somarDevido());
+//        devido.set("2005", 60);
+//        devido.set("2006", 110);
+//        devido.set("2007", 135);
+//        devido.set("2008", 120);
+ 
+        model.addSeries(pagos);
+        model.addSeries(devido);
+         
+        return model;
+    }
+    
+    //soma das consultas pagas
+    private int somarPago(){
+        try {
+            this.sessaodao = new SessaoDAO();
+            this.sessao.setSomaPagaConsulta(this.sessaodao.somaPago());
+            if(sessao.getSomaPagaConsulta() >= 0){
+                int valor = this.sessao.getSomaPagaConsulta();
+                
+                return valor;
+            }
+            else{
+                FacesMessage mensagem = new FacesMessage("Sessão não encontrada"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SaldoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+    
+    //soma das consultas devidas
+    private int somarDevido(){
+        try {
+            this.sessaodao = new SessaoDAO();
+            this.sessao.setSomaDevidaConsulta(this.sessaodao.somaDevido());
+            if(sessao.getSomaDevidaConsulta()>= 0){
+                return this.sessao.getSomaDevidaConsulta();
+            }
+            else{
+                FacesMessage mensagem = new FacesMessage("Sessão não encontrada"); 
+                FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SaldoBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
     
     //popula a lista das sessões com todas as cadastradas
@@ -149,7 +226,7 @@ public class ConsultaDiariaBean {
                 FacesContext.getCurrentInstance().addMessage(null, mensagem);
             }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConsultaDiariaBean.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SaldoBean.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }
@@ -166,7 +243,7 @@ public class ConsultaDiariaBean {
                 System.out.println(this.listaConsultaDiaria.get(0).getNomePaciente());
             if(montarConsulta){
                 
-                listaConsultaSessao();
+                
                 
                 
                 this.paciente.setMostrapesquisa(true);
@@ -211,24 +288,6 @@ public class ConsultaDiariaBean {
        this.listaConsultaDiaria.add(this.paciente);
        listaCompletaSessao();
    }
-   
-   //popula a lista das consultas diárias na tela
-    public void listaConsultaSessao(){
-        try {
-            this.sessaodao = new SessaoDAO();
-            this.listaConsulta = this.sessaodao.listaDeConsulta();
-            if(listaConsulta != null){
-                
-            }
-            else{
-                FacesMessage mensagem = new FacesMessage("Sessão não encontrada"); 
-                FacesContext.getCurrentInstance().addMessage(null, mensagem);
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ConsultaDiariaBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    }
 //  public void pedidoListarPacientes(){
 //        try {
 //            this.pacientedao = new PacientesDAO();

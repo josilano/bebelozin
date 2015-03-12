@@ -21,6 +21,8 @@ public class Pacientes {
     private boolean mostrapesquisa;
     private Date diaConsulta;
     private boolean pagamento;
+    private int somaPagaConsulta;
+    private int somaDevidaConsulta;
 
     public int getIdPaciente() {
         return idPaciente;
@@ -71,7 +73,7 @@ public class Pacientes {
     }
 
     public Date getDiaConsulta() {
-        return diaConsulta;
+        return new Date();
     }
 
     public void setDiaConsulta(Date diaConsulta) {
@@ -84,6 +86,22 @@ public class Pacientes {
 
     public void setPagamento(boolean pagamento) {
         this.pagamento = pagamento;
+    }
+
+    public int getSomaPagaConsulta() {
+        return somaPagaConsulta;
+    }
+
+    public void setSomaPagaConsulta(int somaPagaConsulta) {
+        this.somaPagaConsulta = somaPagaConsulta;
+    }
+
+    public int getSomaDevidaConsulta() {
+        return somaDevidaConsulta;
+    }
+
+    public void setSomaDevidaConsulta(int somaDevidaConsulta) {
+        this.somaDevidaConsulta = somaDevidaConsulta;
     }
     
 }
