@@ -22,10 +22,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 
-/**
- *
- * @author Lano_2
- */
+
 @ManagedBean
 
 public class ConvenioBean {
@@ -48,7 +45,7 @@ public class ConvenioBean {
             this.conveniodao = new ConvenioDAO();
             this.listaConvenio = this.conveniodao.listaDeConvenio();
                 if(listaConvenio != null){
-                    System.out.println(listaConvenio.get(0).getTipoDeConvenio());
+                    //System.out.println(listaConvenio.get(0).getTipoDeConvenio());
                 }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ConvenioBean.class.getName()).log(Level.SEVERE, null, ex);

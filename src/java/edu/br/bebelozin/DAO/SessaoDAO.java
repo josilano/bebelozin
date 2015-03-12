@@ -108,7 +108,7 @@ public class SessaoDAO {
                     lista.add(sessaonew);
                     
                 }
-                System.out.println("recuperou da tab convenio " + lista.get(0).getTipoDeSessao());
+             //   System.out.println("recuperou da tab convenio " + lista.get(0).getTipoDeSessao());
                 return lista;
         } catch (SQLException ex) {
             Logger.getLogger(SessaoDAO.class.getName()).log(Level.SEVERE, null, ex);

@@ -34,6 +34,7 @@ public class SessaoBean {
     
     public SessaoBean(){
         this.sessao = new Sessao();
+        listaCompletaSessao();
     }
 
     //gets e sets

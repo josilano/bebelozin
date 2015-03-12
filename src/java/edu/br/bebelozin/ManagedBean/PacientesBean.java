@@ -19,15 +19,12 @@ import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 
-/**
- *
- * @author Lano_2
- */
+
 @ManagedBean
+
 public class PacientesBean {
     
     //atributos
@@ -42,7 +39,7 @@ public class PacientesBean {
     //construtor
     public PacientesBean(){
         this.paciente = new Pacientes();
-        //pedidoListarPacientes();
+        pedidoListarPacientes();
     }
     
     //métodos gets e sets
@@ -93,15 +90,15 @@ public class PacientesBean {
 //    public void setMostraPesquisa(boolean mostraPesquisa) {
 //        this.mostraPesquisa = mostraPesquisa;
 //    }
+  
     
     //lista todos os pacientes cadastrados
-    public void pedidoListarPacientes(){
+    public final void pedidoListarPacientes(){
         try {
             this.pacientedao = new PacientesDAO();
             this.listaPaciente = this.pacientedao.listaDePacientes();
                 if(listaPaciente != null){
-                    //System.out.println(listaPaciente.get(0).getNomePaciente());
-                }else{
+                  //  System.out.println(listaPaciente.get(0).getNomePaciente());
                 }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(UsuarioBean.class.getName()).log(Level.SEVERE, null, ex);
